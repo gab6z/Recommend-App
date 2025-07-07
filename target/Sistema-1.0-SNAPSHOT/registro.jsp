@@ -1,7 +1,12 @@
-<%-- 
-    Document   : registro
-    Created on : 16 jun 2025, 09:15:58
-    Author     : Gabriela Gonzalez
+<%--
+  Archivo: registro.jsp
+  Descripción: Formulario para el registro del usuario
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

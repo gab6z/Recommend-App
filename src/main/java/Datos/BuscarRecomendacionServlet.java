@@ -20,8 +20,11 @@ import java.util.List;
 
 
 /**
- *
- * @author User
+ * Servidor para que se gestione la busqueda de recomendaciones
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑12
  */
 @WebServlet(name = "BuscarRecomendacionServlet", urlPatterns = {"/BuscarRecomendacionServlet"})
 public class BuscarRecomendacionServlet extends HttpServlet {

@@ -1,3 +1,14 @@
+<%--
+  Archivo: perfil.jsp
+  Descripción: Página cque muestra los detalles del usuario
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
+--%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*, Modelo.*" %>
 <%@ page import="DAO.RecomendacionDAO" %>
@@ -165,6 +176,7 @@
             </div>
 
             <div class="recomendaciones-grid">
+                <%-- Verifica si el objeto 'usuario' no es nulo antes de mostrar la información --%>
                 <% if (misRecomendaciones != null && !misRecomendaciones.isEmpty()) {
                     for (Recomendacion rec : misRecomendaciones) { %>
                         <div class="recomendacion-card">
@@ -186,6 +198,7 @@
                         </div>
                 <%  } 
                 } else { %>
+                   <!-- Mensaje de error si no se encuentra el usuario -->
                     <p>No hay recomendaciones aún.</p>
                 <% } %>
             </div>

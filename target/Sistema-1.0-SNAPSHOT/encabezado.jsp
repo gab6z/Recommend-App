@@ -1,7 +1,12 @@
-<%-- 
-    Document   : encabezado
-    Created on : 19 jun 2025, 19:08:31
-    Author     : Gabriela Solange Gonzalez Roman
+<%--
+  Archivo: encabezado.jsp
+  Descripción: Header de todas las paginas 
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -104,7 +109,7 @@
             <a href="PerfilServlet">Perfil</a>
             <a href="ayuda.jsp">Ayuda</a>
             <a href="acerca.jsp">Acerca de</a>
-            <a href="login.jsp">Cerrar Sesión</a>
+            <a href="LogoutServlet">Cerrar sesión</a>
         </div>
     </div>
 </header>

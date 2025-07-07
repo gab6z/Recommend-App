@@ -5,16 +5,30 @@
 package Modelo;
 
 /**
- *
- * @author User
+ * Representa una categoría dentro del sistema RecommendApp.
+ * Cada categoría sirve para clasificar las recomendaciones creadas por los usuarios.
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑12
  */
 public class Categoria {
     
-        private int id;
+    /** Identificador único de la categoría. */
+    private int id;
+
+    /** Nombre de la categoría. */
     private String nombre;
 
+    /** Constructor por defecto. */
     public Categoria() {}
 
+    /**
+     * Constructor con todos los atributos.
+     *
+     * @param id     identificador único de la categoría
+     * @param nombre nombre o título de la categoría
+     */
     public Categoria(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;

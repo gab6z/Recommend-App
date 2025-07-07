@@ -12,6 +12,15 @@ import java.util.List;
 import DAO.*;
 import Modelo.*;
 
+/**
+ * Servlet destinado a cargar todas las recomendaciones de todos los usuarios,
+ * es decir, las recomendaciones que se encuentran en la base de datos
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑14
+ */
+
 @WebServlet(name = "ServletInicio", urlPatterns = {"/ServletInicio"})
 public class ServletInicio extends HttpServlet {
 
@@ -20,12 +29,12 @@ public class ServletInicio extends HttpServlet {
             throws ServletException, IOException {
 
 
-//Validar sesión activa
+        //Validar sesión activa
         if (request.getSession().getAttribute("usuario") == null) {
             response.sendRedirect("login.jsp");
             return;
         }
-
+        //Try-catch para establecer la conexion correctamente
         try (Connection con = ConexionPostgres.conectar()) {
             if (con == null) {
                 request.setAttribute("error", "No se pudo conectar a la base de datos");

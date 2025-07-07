@@ -1,7 +1,12 @@
-<%-- 
-    Document   : footer
-    Created on : 23 jun 2025, 09:49:31
-    Author     : User
+<%--
+  Archivo: footer.jsp
+  Descripción: Pie de pagina a utilizar en todas las paginas
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 

@@ -17,8 +17,11 @@ import DAO.*;
 import Modelo.*;
 import java.util.List;
 /**
- *
- * @author User
+ * Servlet que maneja el inicio de sesion 
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑14
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
@@ -70,10 +73,7 @@ public class LoginServlet extends HttpServlet {
 String usuario = request.getParameter("usuario");
     String contraseña = request.getParameter("contraseña");
 
-    try {
-        Class.forName("org.postgresql.Driver");
-        Connection con = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/muro_recomendaciones", "postgres", "0321");
+    try (Connection con = ConexionPostgres.conectar()) {
 
         PreparedStatement stmt = con.prepareStatement(
                 "SELECT * FROM usuarios WHERE nombre_usuario = ? AND contraseña = ?");

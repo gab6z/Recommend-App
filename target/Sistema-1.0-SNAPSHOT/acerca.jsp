@@ -1,7 +1,13 @@
-<%-- 
-    Document   : acerca
-    Created on : 23 jun 2025, 09:00:26
-    Author     : User
+
+<%--
+  Archivo: acerca.jsp
+  Descripción: Página informativa del sistema RecommendApp que explica su propósito, objetivo, equipo desarrollador y tecnologías usadas.
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -132,6 +138,12 @@
 <%@ include file="footer.jsp" %>
 
 <script>
+    /**
+    * Espera a que el DOM esté completamente cargado y luego
+    * inicializa el comportamiento de un acordeón interactivo.
+    * - Cada encabezado de acordeón (.accordion-header) responde al clic.
+    * - Al hacer clic, se despliega su contenido y se cierran los demás.
+    */
     document.addEventListener('DOMContentLoaded', () => {
         const headers = document.querySelectorAll('.accordion-header');
 

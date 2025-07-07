@@ -17,8 +17,11 @@ import java.sql.*;
 import java.util.List;
 
 /**
- *
- * @author User
+ * Servlet para la editar las recomendaciones
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑16
  */
 @WebServlet(name = "EditarRecomendacionServlet", urlPatterns = {"/EditarRecomendacionServlet"})
 public class EditarRecomendacionServlet extends HttpServlet {
@@ -53,12 +56,12 @@ public class EditarRecomendacionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          int id = Integer.parseInt(request.getParameter("id"));
-
-        try {
-            Class.forName("org.postgresql.Driver");
+        //Valida la conexion para la edicion de datos
+        try (Connection con = ConexionPostgres.conectar()){
+            /*Class.forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/muro_recomendaciones", "postgres", "0321");
-
+                    "jdbc:postgresql://localhost:5432/muro_recomendaciones", "postgres", "0321");*/
+            
             RecomendacionDAO dao = new RecomendacionDAO(con);
             Recomendacion rec = dao.obtenerPorId(id); 
 
@@ -89,20 +92,19 @@ public class EditarRecomendacionServlet extends HttpServlet {
         String descripcion = request.getParameter("descripcion");
         int categoriaId = Integer.parseInt(request.getParameter("categoria"));
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/muro_recomendaciones", "postgres", "0321");
-
+        try (Connection con = ConexionPostgres.conectar()){
+            //instancia de RecomendacionDAO
             RecomendacionDAO dao = new RecomendacionDAO(con);
-
+            //instancia de Recomendacion
             Recomendacion rec = new Recomendacion();
+            //setteo de atributos
             rec.setId(id);
             rec.setTitulo(titulo);
             rec.setDescripcion(descripcion);
             rec.setCategoria(new Categoria(categoriaId, ""));
-
+            //llamada al metodo actualizar
             dao.actualizar(rec); 
+            //Redireccion al perfil
             response.sendRedirect("perfil.jsp");
 
         } catch (Exception e) {

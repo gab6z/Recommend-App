@@ -15,8 +15,11 @@ import java.sql.*;
 import DAO.*;
 
 /**
- *
- * @author User
+ * Servlet que elimina la recomendacion en mla base de datos
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑16
  */
 @WebServlet(name = "EliminarRecomendacionServet", urlPatterns = {"/EliminarRecomendacionServet"})
 public class EliminarRecomendacionServet extends HttpServlet {
@@ -75,11 +78,8 @@ public class EliminarRecomendacionServet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
              int id = Integer.parseInt(request.getParameter("id"));
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/muro_recomendaciones", "postgres", "0321");
+        //Intenta la conexion y manda la sentencia DELETE para eliminar la recomendacion segun el id del usuario
+        try (Connection con = ConexionPostgres.conectar()){
 
             PreparedStatement ps = con.prepareStatement("DELETE FROM recomendaciones WHERE id = ?");
             ps.setInt(1, id);
@@ -88,7 +88,7 @@ public class EliminarRecomendacionServet extends HttpServlet {
             response.sendRedirect("perfil.jsp");
         } catch (Exception e) {
             e.printStackTrace();
-            response.getWriter().println("❌ Error al eliminar recomendación: " + e.getMessage());
+            response.getWriter().println("Error al eliminar recomendación: " + e.getMessage());
         }
     }
 

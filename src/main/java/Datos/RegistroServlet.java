@@ -15,8 +15,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author User
+ * Servidor destinado para el registro del usuario
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑12
  */
 @WebServlet(name = "RegistroServlet", urlPatterns = {"/RegistroServlet"})
 public class RegistroServlet extends HttpServlet {
@@ -66,7 +69,8 @@ public class RegistroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     request.setCharacterEncoding("UTF-8");
-
+     
+    //Declaracion de variables  para obtenerlas
     String apodo = request.getParameter("apodo");
     String nombre = request.getParameter("nombre");
     String correo = request.getParameter("correo");
@@ -101,7 +105,7 @@ public class RegistroServlet extends HttpServlet {
     }
 
     // Validar contraseña segura
-    if (!clave.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+=<>?{}\\[\\]~-]).{8,}$")) {
+    if (!clave.matches("^(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+=<>?{}\\[\\]~\\-.]).{8,}$")) {
         request.setAttribute("error", "La contraseña debe tener al menos una mayúscula, un número, un carácter especial y mínimo 8 caracteres.");
         request.getRequestDispatcher("registro.jsp").forward(request, response);
         return;
@@ -114,10 +118,7 @@ public class RegistroServlet extends HttpServlet {
         return;
     }
 
-    try {
-        Class.forName("org.postgresql.Driver");
-        Connection con = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/muro_recomendaciones", "postgres", "0321");
+    try (Connection con = ConexionPostgres.conectar()) {
 
         // Validar si apodo o correo ya existen
         PreparedStatement checkStmt = con.prepareStatement(

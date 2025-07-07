@@ -5,19 +5,42 @@
 package DAO;
 
 /**
- *
- * @author User
+ * Permite realizar la autenticación de usuarios del sistema mediante el
+ * método {@link #login(String, String)}, que verifica las credenciales contra
+ * la tabla usuarios
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑13
  */
 import java.sql.*;
 import Modelo.*;
 
+/**
+ * DAO (<em>Data Access Object</em>) para la entidad {@link Modelo.Usuario}.*/
 public class UsuarioDAO {
+
+    /** Conexión activa a la base de datos. */
     private Connection con;
 
+    /**
+     * Crea una instancia de {@code UsuarioDAO}.
+     *
+     * @param con conexión a la base de datos que se utilizará en las consultas
+     */
     public UsuarioDAO(Connection con) {
         this.con = con;
     }
 
+    /**
+     * Autentica a un usuario comprobando su nombre de usuario y contraseña.
+     *
+     * @param nombreUsuario nombre de usuario ingresado
+     * @param contraseña    contraseña ingresada
+     * @return una instancia de {@link Modelo.Usuario} con los datos del usuario
+     *         autenticado, o {@code null} si las credenciales no son válidas
+     * @throws SQLException si ocurre un error durante la consulta
+     */
     public Usuario login(String nombreUsuario, String contraseña) throws SQLException {
     String sql = "SELECT * FROM usuarios WHERE nombre_usuario = ? AND contraseña  = ?";
     try (PreparedStatement stmt = con.prepareStatement(sql)) {

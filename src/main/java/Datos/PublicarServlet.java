@@ -20,8 +20,11 @@ import java.sql.ResultSet;
 
 
 /**
- *
- * @author User
+ * Servlet destinado a manejar las publicaciones de los usuarios
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑16
  */
 @WebServlet(name = "PublicarServlet", urlPatterns = {"/PublicarServlet"})
 public class PublicarServlet extends HttpServlet {
@@ -89,7 +92,7 @@ public class PublicarServlet extends HttpServlet {
     String titulo = request.getParameter("titulo");
     String descripcion = request.getParameter("descripcion");
     String categoriaNombre = request.getParameter("categoria");
-
+    //Validar la descripcion, titulo, el nombre de categoria si no son nulos
     if (titulo == null || descripcion == null || categoriaNombre == null) {
         request.setAttribute("error", "Todos los campos son obligatorios.");
         request.getRequestDispatcher("inicio.jsp").forward(request, response);
@@ -97,7 +100,7 @@ public class PublicarServlet extends HttpServlet {
     }
 
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-
+    //Bloque try-catch para validar la conexion
     try (Connection con = ConexionPostgres.conectar()) {
 
         // Obtener ID de la categoría por nombre
@@ -132,7 +135,7 @@ public class PublicarServlet extends HttpServlet {
         response.sendRedirect("ServletInicio");
 
     } catch (Exception e) {
-        e.printStackTrace(); // idealmente usar logs
+        e.printStackTrace();
         request.setAttribute("error", "Error al publicar: " + e.getMessage());
         request.getRequestDispatcher("inicio.jsp").forward(request, response);
     }

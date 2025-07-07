@@ -1,7 +1,12 @@
-<%-- 
-    Document   : inicio
-    Created on : 12 jun 2023, 05:54:54
-    Author     : User
+<%--
+  Archivo: inicio.jsp
+  Descripción: Muestra todas las recomendaciones y el inicio del sistema
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix= "c" uri="http://java.sun.com/jsp/jstl/core"  %>
@@ -21,50 +26,6 @@
             background: #f2f5f7;
             margin: 0;
         }
-        /*header {
-            background: #6C63FF;
-            padding: 15px 20px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-        .header-left {
-            font-weight: bold;
-            font-size:50px;
-            margin: 20px;
-            padding-left: 20px;
-            
-        }
-        .menu-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
-        .menu-dropdown {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background: white;
-            color: black;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            z-index: 100;
-            width: 160px;
-        }
-        .menu-dropdown a {
-            display: block;
-            padding: 12px;
-            text-decoration: none;
-            color: black;
-        }
-        .menu-dropdown a:hover {
-            background: #f1f1f1;
-        }*/
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -87,7 +48,7 @@
         }
         .recomendaciones {
          display: grid;
-         grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+         grid-template-columns: repeat(4, 1fr); 
          gap: 20px;
         }
 
@@ -96,7 +57,6 @@
          border-radius: 12px;
          box-shadow: 0 0 10px rgba(0,0,0,0.05);
          padding: 20px;
-        /* Elimina el width fijo para que la tarjeta tome el ancho de la columna */
          width: 100%;
          box-sizing: border-box;
          }
@@ -156,19 +116,37 @@
         .AppsEducativas { background-color: gray; }
     </style>
     <script>
+     /**
+     * Alterna la visibilidad del menú hamburguesa.
+     * ‑ Si el elemento #menu está visible (display:block) lo oculta.
+     * ‑ Si está oculto, lo muestra.
+     */
         function toggleMenu() {
             var menu = document.getElementById("menu");
             menu.style.display = menu.style.display === "block" ? "none" : "block";
         }
+     /**
+     * Abre el modal de “Nueva Recomendación”.
+     * Cambia el display del contenedor #modal a flex
+     * para centrarlo (el CSS usa display:flex).
+     */
 
         function showModal() {
             document.getElementById("modal").style.display = "flex";
         }
-
+        
+    /**
+     * Cierra el modal restaurando display:none.
+     */
         function closeModal() {
             document.getElementById("modal").style.display = "none";
         }
-
+    /**
+     * Cierra el menú desplegable si el usuario hace clic
+     * fuera del menú (#menu) y del botón que lo abre (#menuButton).
+     *
+     * @param {MouseEvent} e - Evento de clic recibido desde el document.
+     */
         document.addEventListener('click', function(e) {
             var menu = document.getElementById("menu");
             var btn = document.getElementById("menuButton");
@@ -176,7 +154,10 @@
                 menu.style.display = "none";
             }
         });
-
+    /**
+    * Registra los listeners de filtro al cargar la ventana y
+    * muestra/oculta tarjetas según la categoría seleccionada.
+    */
         window.onload = function() {
             document.querySelectorAll('.filtro-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -206,21 +187,21 @@
         <button type="submit" style="padding:8px 16px; background:#6C63FF; color:white; border:none; border-radius:4px;">Buscar</button>
     </form>
 
-
+    <!-- Botones de filtros para la app -->
     <div class="filtros">
-                    <form action="ServletInicio" method="get" style="display:inline;">
-                             <button class="filtro-btn activo" type="submit">Todas</button>
-                    </form>
+        <form action="ServletInicio" method="get" style="display:inline;">
+        <button class="filtro-btn activo" type="submit">Todas</button>
+        </form>
 
         <button class="filtro-btn" data-categoria="Libros">Libros</button>
         <button class="filtro-btn" data-categoria="Series">Series</button>
         <button class="filtro-btn" data-categoria="Películas">Películas</button>
         <button class="filtro-btn" data-categoria="Apps Educativas">Apps Educativas</button>
     </div>
-
     <button class="nueva-btn" onclick="showModal()">+ Nueva Recomendación</button>
 
     <div class="recomendaciones">
+       
    <c:choose>
        <c:when test="${not empty recomendaciones}">
            <c:forEach var="rec" items="${recomendaciones}">
@@ -235,6 +216,7 @@
                        <c:otherwise>⭐</c:otherwise>
                    </c:choose>
                </c:set>
+              <!-- Tarjeta de recomendación, con atributo personalizado para filtrado JS -->
                <div class="recomendacion" data-categoria="${cat}">
                    <strong>${rec.titulo}</strong>
                    <br></br>
@@ -263,7 +245,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+    <!-- Formulario para publicar nueva recomendación. -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <form action="PublicarServlet" method="post">

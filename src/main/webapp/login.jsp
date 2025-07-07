@@ -1,7 +1,12 @@
 <%-- 
-    Document   : login
-    Created on : 16 jun 2025, 09:28:21
-    Author     : Gabriela Gonzalez Roman 
+  Archivo: login.jsp
+  Descripción: Página de inicio de sesion o redireccion a registro.
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
 --%>
 
 
@@ -82,7 +87,7 @@
     <!-- Título de bienvenida -->
     <div class="app-title">Bienvenido/a a tu lugar favorito</div>
 
-    <!-- Formulario de inicio de sesión -->
+    <!-- Formulario que envía los datos de inicio de sesión al servlet "LoginServlet" -->
     <div class="form-container">
         <h2>Iniciar Sesión</h2>
         <% if (request.getAttribute("error") != null) { %>
@@ -93,6 +98,7 @@
             <input type="password" name="contraseña" placeholder="Contraseña" required>
             <button type="submit">Ingresar</button>
         </form>
+        <!-- Enlace para redirigir al usuario a la página de registro -->
         <div class="register-link">
             ¿No tienes cuenta? <a href="registro.jsp">Regístrate</a>
         </div>

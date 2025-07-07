@@ -24,8 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author User
+ * Servlet que ayuda a perfil para que los datos carguen correctamente.
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑16
  */
 @WebServlet(name = "PerfilServlet", urlPatterns = {"/PerfilServlet"})
 public class PerfilServlet extends HttpServlet {
@@ -68,21 +71,22 @@ public class PerfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //obtiene la sesion, el usuario logueado
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-
+        //Revisa si es nulo o no, si es nulo lo devuelve al login
         if (usuario == null) {
             response.sendRedirect("login.jsp");
             return;
         }
-
+        //Obtiene las recomendaciones del usuario listadas en la base de datos y las muestra
         List<Recomendacion> misRecomendaciones = new ArrayList<>();
-        try {
-            ConexionPostgres conexion = new ConexionPostgres();
-            Connection con = conexion.conectar();
+        try (Connection con= ConexionPostgres.conectar()){
+            
             RecomendacionDAO dao = new RecomendacionDAO(con);
             misRecomendaciones = dao.listarPorUsuario(usuario.getId());
         } catch (Exception e) {
+            //Se muestra error si no se conecta a la base de datos
             request.setAttribute("error", "Error cargando recomendaciones: " + e.getMessage());
         }
 

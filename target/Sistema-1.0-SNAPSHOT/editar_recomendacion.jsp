@@ -1,7 +1,12 @@
-<%-- 
-    Document   : editar_recomendacion
-    Created on : 19 jun 2025, 18:45:10
-    Author     : User
+<%--
+  Archivo: editar_recomendacion.jsp
+  Descripción: Página con formulario en donde se ingresan los nuevos datos de la recomendacion.
+  Autor(es): Gabriela Solange Gonzalez Román, Leandro Rene Palacios Moriel
+  Materia: Construcción de Software
+  Semestre: 6to semestre de Ingeniería de Software
+  Universidad: Facultad de Ciencias Matemáticas y Física
+  Tecnologías utilizadas: JSP, HTML, CSS, JavaScript
+  Fecha: Junio 2025
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -116,11 +121,21 @@
         }
     </style>
     <script>
+        /**
+        * Muestra u oculta el menú hamburguesa.
+        * ─ Si #menu está visible (display: block) lo oculta.  
+        * ─ Si está oculto (display ≠ block) lo hace visible.
+        */
         function toggleMenu() {
             var menu = document.getElementById("menu");
             menu.style.display = menu.style.display === "block" ? "none" : "block";
         }
-
+        /**
+         * Cierra el menú cuando el usuario hace clic en cualquier parte
+         * que NO sea el propio menú (#menu) ni el botón que lo abre (#menuButton).
+         *
+         * @param {MouseEvent} e Evento de clic lanzado por el documento.
+         */
         document.addEventListener('click', function(e) {
             var menu = document.getElementById("menu");
             var btn = document.getElementById("menuButton");

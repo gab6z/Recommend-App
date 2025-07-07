@@ -14,8 +14,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 
 /**
- *
- * @author User
+ * Servlet destinado para probar conexion,
+ * @author Gabriela Solange Gonzalez Román
+ * @author Leandro Rene Palacios Moriel
+ * @version 1.0 
+ * @since 2025‑06‑14
  */
 @WebServlet(name = "TestConexionServlet", urlPatterns = {"/TestConexionServlet"})
 public class TestConexionServlet extends HttpServlet {
